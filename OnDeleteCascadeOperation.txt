@@ -1,0 +1,158 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 59
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database libraryDatabase;
+Query OK, 1 row affected (1.13 sec)
+
+mysql> use libraryDatabase;
+Database changed
+
+mysql> create table publisher(
+    -> pub_name varchar(20) primary key,
+    -> phone int,
+    -> address varchar(20)
+    -> );
+Query OK, 0 rows affected (1.69 sec)
+
+mysql> create table book(
+    -> book_id int primary key,
+    -> title varchar(20),
+    -> pub_year varchar(20),
+    -> pub_name varchar(20),
+    -> foreign key(pub_name) references publisher(pub_name) on delete cascade
+    -> );
+Query OK, 0 rows affected (1.86 sec)
+
+mysql> desc publisher;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| pub_name | varchar(20) | NO   | PRI | NULL    |       |
+| phone    | int         | YES  |     | NULL    |       |
+| address  | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into publisher values('megraw-hill',1234567890,'bangalore');
+Query OK, 1 row affected (2.55 sec)
+
+mysql> insert into publisher values('pearson',1234560890,'newdelhi');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into publisher values('random house',1334567890,'hydrabad');
+Query OK, 1 row affected (0.47 sec)
+
+mysql> select * from publisher;
++--------------+------------+-----------+
+| pub_name     | phone      | address   |
++--------------+------------+-----------+
+| megraw-hill  | 1234567890 | bangalore |
+| pearson      | 1234560890 | newdelhi  |
+| random house | 1334567890 | hydrabad  |
++--------------+------------+-----------+
+3 rows in set (0.08 sec)
+
+mysql> desc book;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| book_id  | int         | NO   | PRI | NULL    |       |
+| title    | varchar(20) | YES  |     | NULL    |       |
+| pub_year | varchar(20) | YES  |     | NULL    |       |
+| pub_name | varchar(20) | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (2.42 sec)
+
+mysql> insert into book values(1,'dbms','jan-2017','megraw-hill');
+Query OK, 1 row affected (0.44 sec)
+
+mysql> insert into book values(2,'rdbms','jan-2016','megraw-hill');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into book values(3,'java','Sep-2016','pearson');
+Query OK, 1 row affected (2.40 sec)
+
+mysql> insert into book values(4,'html','Sep-2015','random house');
+Query OK, 1 row affected (0.53 sec)
+
+mysql> insert into book values(5,'Corejava','Aug-2014','pearson');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from book;
++---------+----------+----------+--------------+
+| book_id | title    | pub_year | pub_name     |
++---------+----------+----------+--------------+
+|       1 | dbms     | jan-2017 | megraw-hill  |
+|       2 | rdbms    | jan-2016 | megraw-hill  |
+|       3 | java     | Sep-2016 | pearson      |
+|       4 | html     | Sep-2015 | random house |
+|       5 | Corejava | Aug-2014 | pearson      |
++---------+----------+----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from book where book_id = 3;
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from book;
++---------+----------+----------+--------------+
+| book_id | title    | pub_year | pub_name     |
++---------+----------+----------+--------------+
+|       1 | dbms     | jan-2017 | megraw-hill  |
+|       2 | rdbms    | jan-2016 | megraw-hill  |
+|       4 | html     | Sep-2015 | random house |
+|       5 | Corejava | Aug-2014 | pearson      |
++---------+----------+----------+--------------+
+4 rows in set (0.06 sec)
+
+mysql> delete from publisher where address='newdelhi';
+Query OK, 1 row affected (0.40 sec)
+
+mysql> select * from publisher;
++--------------+------------+-----------+
+| pub_name     | phone      | address   |
++--------------+------------+-----------+
+| megraw-hill  | 1234567890 | bangalore |
+| random house | 1334567890 | hydrabad  |
++--------------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from book;
++---------+-------+----------+--------------+
+| book_id | title | pub_year | pub_name     |
++---------+-------+----------+--------------+
+|       1 | dbms  | jan-2017 | megraw-hill  |
+|       2 | rdbms | jan-2016 | megraw-hill  |
+|       4 | html  | Sep-2015 | random house |
++---------+-------+----------+--------------+
+3 rows in set (0.06 sec)
+
+mysql> delete from publisher where pub_name = 'megraw-hill';
+Query OK, 1 row affected (0.56 sec)
+
+mysql> select * from publisher;
++--------------+------------+----------+
+| pub_name     | phone      | address  |
++--------------+------------+----------+
+| random house | 1334567890 | hydrabad |
++--------------+------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from book;
++---------+-------+----------+--------------+
+| book_id | title | pub_year | pub_name     |
++---------+-------+----------+--------------+
+|       4 | html  | Sep-2015 | random house |
++---------+-------+----------+--------------+
+1 row in set (0.00 sec)
+
+mysql>
