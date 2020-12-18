@@ -155,4 +155,13 @@ mysql> select * from book;
 +---------+-------+----------+--------------+
 1 row in set (0.00 sec)
 
+mysql> delete from publisher where pub_name = 'random house';
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from publisher;
+Empty set (0.00 sec)
+
+mysql> select * from book;
+Empty set (0.00 sec)
+
 mysql>

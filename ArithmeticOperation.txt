@@ -1,0 +1,164 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| collegedatabase    |
+| company            |
+| employee           |
+| hoteldatabase      |
+| information_schema |
+| librarydatabase    |
+| mysql              |
+| performance_schema |
+| sales              |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| dept               |
+| emp                |
+| salgrade           |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | Jhon   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | Ravi   | clerk     | 7782 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7369 | Smith  | clerk     | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman  | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | Jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | Martin | Salesman  | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | Clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | Scott  | Analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | King   | President | NULL | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | Turner | Salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     10 |
+|  7876 | Adams  | Clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | James  | Clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7902 | Ford   | Analyst   | 7566 | 1997-12-05 | 3000.00 |    NULL |     20 |
+|  7934 | Miller | Cleark    | 7782 | 2000-01-21 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select salary+comm from emp;
++-------------+
+| salary+comm |
++-------------+
+|        NULL |
+|        NULL |
+|        NULL |
+|      800.00 |
+|     1900.00 |
+|     1750.00 |
+|        NULL |
+|     2650.00 |
+|        NULL |
+|        NULL |
+|        NULL |
+|     5000.00 |
+|     1500.00 |
+|        NULL |
+|        NULL |
+|        NULL |
+|        NULL |
++-------------+
+17 rows in set (0.00 sec)
+
+mysql> select empno,ename, salary+comm from emp;
++-------+--------+-------------+
+| empno | ename  | salary+comm |
++-------+--------+-------------+
+|  7000 | Jhon   |        NULL |
+|  7002 | sham   |        NULL |
+|  7004 | Ravi   |        NULL |
+|  7369 | Smith  |      800.00 |
+|  7499 | Allen  |     1900.00 |
+|  7521 | Ward   |     1750.00 |
+|  7566 | Jones  |        NULL |
+|  7654 | Martin |     2650.00 |
+|  7698 | Blake  |        NULL |
+|  7782 | Clark  |        NULL |
+|  7788 | Scott  |        NULL |
+|  7839 | King   |     5000.00 |
+|  7844 | Turner |     1500.00 |
+|  7876 | Adams  |        NULL |
+|  7900 | James  |        NULL |
+|  7902 | Ford   |        NULL |
+|  7934 | Miller |        NULL |
++-------+--------+-------------+
+17 rows in set (0.00 sec)
+
+mysql> select empno,ename, salary-comm from emp;
++-------+--------+-------------+
+| empno | ename  | salary-comm |
++-------+--------+-------------+
+|  7000 | Jhon   |        NULL |
+|  7002 | sham   |        NULL |
+|  7004 | Ravi   |        NULL |
+|  7369 | Smith  |      800.00 |
+|  7499 | Allen  |     1300.00 |
+|  7521 | Ward   |      750.00 |
+|  7566 | Jones  |        NULL |
+|  7654 | Martin |     -150.00 |
+|  7698 | Blake  |        NULL |
+|  7782 | Clark  |        NULL |
+|  7788 | Scott  |        NULL |
+|  7839 | King   |     5000.00 |
+|  7844 | Turner |     1500.00 |
+|  7876 | Adams  |        NULL |
+|  7900 | James  |        NULL |
+|  7902 | Ford   |        NULL |
+|  7934 | Miller |        NULL |
++-------+--------+-------------+
+17 rows in set (0.05 sec)
+
+mysql> select empno,ename, salary*0.1*12 from emp;
++-------+--------+---------------+
+| empno | ename  | salary*0.1*12 |
++-------+--------+---------------+
+|  7000 | Jhon   |      3000.000 |
+|  7002 | sham   |      3000.000 |
+|  7004 | Ravi   |       600.000 |
+|  7369 | Smith  |       960.000 |
+|  7499 | Allen  |      1920.000 |
+|  7521 | Ward   |      1500.000 |
+|  7566 | Jones  |      3570.000 |
+|  7654 | Martin |      1500.000 |
+|  7698 | Blake  |      3420.000 |
+|  7782 | Clark  |      2940.000 |
+|  7788 | Scott  |      3600.000 |
+|  7839 | King   |      6000.000 |
+|  7844 | Turner |      1800.000 |
+|  7876 | Adams  |      1320.000 |
+|  7900 | James  |      1140.000 |
+|  7902 | Ford   |      3600.000 |
+|  7934 | Miller |      1560.000 |
++-------+--------+---------------+
+17 rows in set (0.00 sec)
+
+mysql>
