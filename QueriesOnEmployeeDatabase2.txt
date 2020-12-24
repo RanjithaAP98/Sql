@@ -1,0 +1,351 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 99
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| collegedatabase    |
+| company            |
+| employee           |
+| hoteldatabase      |
+| information_schema |
+| mysql              |
+| orderdatabase      |
+| performance_schema |
+| sales              |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.09 sec)
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| dept               |
+| emp                |
+| salgrade           |
++--------------------+
+3 rows in set (0.03 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | Jhon   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | Ravi   | clerk     | 7782 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7369 | Smith  | clerk     | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman  | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | Jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | Martin | Salesman  | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | Clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | Scott  | Analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | King   | President | NULL | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | Turner | Salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     10 |
+|  7876 | Adams  | Clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | James  | Clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7902 | Ford   | Analyst   | 7566 | 1997-12-05 | 3000.00 |    NULL |     20 |
+|  7934 | Miller | Cleark    | 7782 | 2000-01-21 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+17 rows in set (0.06 sec)
+
+1. Display all the employees whose name starts with 'S'
+
+mysql> select * from emp where ename like 's%';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7002 | sham  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7369 | Smith | clerk   | 7902 | 1993-06-13 |  800.00 | 0.00 |     20 |
+|  7788 | Scott | Analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+2. List the employees name having letter 'L' as the second character
+
+mysql> select * from emp where ename like '_l%';
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | salary  | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | Allen | Salesman | 7698 | 1993-08-15 | 1600.00 | 300.00 |     30 |
+|  7698 | Blake | manager  | 7839 | 1992-06-11 | 2850.00 |   NULL |     30 |
+|  7782 | Clark | manager  | 7839 | 1993-05-14 | 2450.00 |   NULL |     10 |
++-------+-------+----------+------+------------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+3. List the employees name having 'E' as last but one character
+
+mysql> select * from emp where ename like '%e';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7698 | Blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
++-------+-------+---------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+4. List the employees name having exactly 4 letters
+
+mysql> select * from emp where ename like '____';
++-------+-------+-----------+------+------------+---------+--------+--------+
+| empno | ename | job       | mgr  | hiredate   | salary  | comm   | deptno |
++-------+-------+-----------+------+------------+---------+--------+--------+
+|  7000 | Jhon  | manger    | 7698 | 2020-06-18 | 2500.00 |   NULL |     50 |
+|  7002 | sham  | manger    | 7698 | 2020-06-18 | 2500.00 |   NULL |     50 |
+|  7004 | Ravi  | clerk     | 7782 | 2000-12-12 |  500.00 |   NULL |     50 |
+|  7521 | Ward  | Salesman  | 7698 | 1996-03-26 | 1250.00 | 500.00 |     30 |
+|  7839 | King  | President | NULL | 1990-06-09 | 5000.00 |   0.00 |     10 |
+|  7902 | Ford  | Analyst   | 7566 | 1997-12-05 | 3000.00 |   NULL |     20 |
++-------+-------+-----------+------+------------+---------+--------+--------+
+6 rows in set (0.00 sec)
+
+5. List the employee whose name is having letter 'L'
+
+mysql> select * from emp where ename like '%l%';
++-------+--------+----------+------+------------+---------+--------+--------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | comm   | deptno |
++-------+--------+----------+------+------------+---------+--------+--------+
+|  7499 | Allen  | Salesman | 7698 | 1993-08-15 | 1600.00 | 300.00 |     30 |
+|  7698 | Blake  | manager  | 7839 | 1992-06-11 | 2850.00 |   NULL |     30 |
+|  7782 | Clark  | manager  | 7839 | 1993-05-14 | 2450.00 |   NULL |     10 |
+|  7934 | Miller | Cleark   | 7782 | 2000-01-21 | 1300.00 |   NULL |     10 |
++-------+--------+----------+------+------------+---------+--------+--------+
+4 rows in set (0.00 sec)
+
+6. List the employees name having atleast 5 characters
+
+mysql> select * from emp where ename like '%_____%';
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7369 | Smith  | clerk    | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7566 | Jones  | manager  | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | Martin | Salesman | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager  | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | Clark  | manager  | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | Scott  | Analyst  | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7844 | Turner | Salesman | 7698 | 1995-06-04 | 1500.00 |    0.00 |     10 |
+|  7876 | Adams  | Clerk    | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | James  | Clerk    | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7934 | Miller | Cleark   | 7782 | 2000-01-21 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+11 rows in set (0.00 sec)
+
+7. List employees earning between 2000 and 3000
+
+mysql> select * from emp where salary between 2000 and 3000;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7000 | Jhon  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7002 | sham  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7566 | Jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7698 | Blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
+|  7782 | Clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
+|  7788 | Scott | Analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7902 | Ford  | Analyst | 7566 | 1997-12-05 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+7 rows in set (0.00 sec)
+
+9. List emp who do not have any reporting manager or commision is Null
+
+mysql> select * from emp where mgr is null;
++-------+-------+-----------+------+------------+---------+------+--------+
+| empno | ename | job       | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7839 | King  | President | NULL | 1990-06-09 | 5000.00 | 0.00 |     10 |
++-------+-------+-----------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+10. List emp who do not have any reporting manager AND commision is Null
+
+mysql> select * from emp where mgr is not null;
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7000 | Jhon   | manger   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manger   | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | Ravi   | clerk    | 7782 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7369 | Smith  | clerk    | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | Jones  | manager  | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | Martin | Salesman | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager  | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | Clark  | manager  | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | Scott  | Analyst  | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7844 | Turner | Salesman | 7698 | 1995-06-04 | 1500.00 |    0.00 |     10 |
+|  7876 | Adams  | Clerk    | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | James  | Clerk    | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7902 | Ford   | Analyst  | 7566 | 1997-12-05 | 3000.00 |    NULL |     20 |
+|  7934 | Miller | Cleark   | 7782 | 2000-01-21 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+16 rows in set (0.00 sec)
+
+11. List only managers
+
+mysql> select * from emp where job='manager';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | Jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7698 | Blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
+|  7782 | Clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp where job='manager'or job='manger';
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7000 | Jhon  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7002 | sham  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7566 | Jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7698 | Blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
+|  7782 | Clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+12. List managers working in dept 10 and 20
+
+mysql> select * from emp where job='manager'and deptno in(10,20);
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | Jones | manager | 7839 | 1995-10-31 | 2975.00 | NULL |     20 |
+|  7782 | Clark | manager | 7839 | 1993-05-14 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+2 rows in set (0.00 sec)
+
+13. List all the clerks and analysts with salary atleast 1000 in dept 20 and 30
+
+mysql> select * from emp where job in ('clerk','analyst') and deptno in (20,30)
+and salary >= 1000;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7788 | Scott | Analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
+|  7876 | Adams | Clerk   | 7788 | 1999-06-04 | 1100.00 | NULL |     20 |
+|  7902 | Ford  | Analyst | 7566 | 1997-12-05 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+14. List the employees in dept 20 and 30 who get no commision
+
+mysql> select * from emp where deptno in (20,30) and comm='null';
++-------+-------+-------+------+------------+--------+------+--------+
+| empno | ename | job   | mgr  | hiredate   | salary | comm | deptno |
++-------+-------+-------+------+------------+--------+------+--------+
+|  7369 | Smith | clerk | 7902 | 1993-06-13 | 800.00 | 0.00 |     20 |
++-------+-------+-------+------+------------+--------+------+--------+
+1 row in set, 1 warning (0.00 sec)
+
+15. List employees whose name starts with either 'A' or 'S' in dept 20
+
+mysql> select * from emp where ename like 'a%' or 's%' and deptno=20;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | salary  | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | Allen | Salesman | 7698 | 1993-08-15 | 1600.00 | 300.00 |     30 |
+|  7876 | Adams | Clerk    | 7788 | 1999-06-04 | 1100.00 |   NULL |     20 |
++-------+-------+----------+------+------------+---------+--------+--------+
+2 rows in set, 1 warning (0.00 sec)
+
+					OR
+					
+mysql> select * from emp where ename like 's%' or 'a%' and deptno=20;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7002 | sham  | manger  | 7698 | 2020-06-18 | 2500.00 | NULL |     50 |
+|  7369 | Smith | clerk   | 7902 | 1993-06-13 |  800.00 | 0.00 |     20 |
+|  7788 | Scott | Analyst | 7566 | 1996-03-05 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+3 rows in set, 1 warning (0.00 sec)
+
+16. List all the employee whoe name does not end with 'S' in dept 20 and 30
+
+mysql> select * from emp where ename not like '%s' and deptno in (20,30);
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7369 | Smith  | clerk    | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7654 | Martin | Salesman | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager  | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7788 | Scott  | Analyst  | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7902 | Ford   | Analyst  | 7566 | 1997-12-05 | 3000.00 |    NULL |     20 |
++-------+--------+----------+------+------------+---------+---------+--------+
+7 rows in set (0.00 sec)
+
+17. List the employees who are getting some commision with sal > 1500 in dept 30
+
+18. List the employees who are getting some commision with sal>1500 in dept 30
+ 
+mysql> select * from emp where comm<> 'NULL' and salary >1500 and deptno=30;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | salary  | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | Allen | Salesman | 7698 | 1993-08-15 | 1600.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+1 row in set, 1 warning (0.00 sec)
+
+19. List emp working as managers and clerks with Salary atleast 2000 except in dept 10 and 20
+
+select * from emp where job in ('manager','clerk') and salary >= 2000 and
+ deptno not in(10,20);
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | salary  | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7698 | Blake | manager | 7839 | 1992-06-11 | 2850.00 | NULL |     30 |
++-------+-------+---------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+20. List emp who get commmision
+
+mysql> select * from emp where comm<>null;
+Empty set (0.00 sec)
+
+mysql> select * from emp where comm<>'null';
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | Allen  | Salesman | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7654 | Martin | Salesman | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
++-------+--------+----------+------+------------+---------+---------+--------+
+3 rows in set, 1 warning (0.00 sec)
+
+21. List employees in all dept whose salary not in the range of 2000 to 3000 with the job which is having a string called 'MAN'
+
+mysql> select * from emp where salary not in(2000,3000) and job not like '%man%';
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7004 | Ravi   | clerk     | 7782 | 2000-12-12 |  500.00 | NULL |     50 |
+|  7369 | Smith  | clerk     | 7902 | 1993-06-13 |  800.00 | 0.00 |     20 |
+|  7839 | King   | President | NULL | 1990-06-09 | 5000.00 | 0.00 |     10 |
+|  7876 | Adams  | Clerk     | 7788 | 1999-06-04 | 1100.00 | NULL |     20 |
+|  7900 | James  | Clerk     | 7698 | 2000-06-23 |  950.00 | NULL |     30 |
+|  7934 | Miller | Cleark    | 7782 | 2000-01-21 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql>
