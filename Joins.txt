@@ -1,0 +1,317 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| dept               |
+| emp                |
+| salgrade           |
++--------------------+
+3 rows in set (0.09 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7000 | Jhon   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7002 | sham   | manger    | 7698 | 2020-06-18 | 2500.00 |    NULL |     50 |
+|  7004 | Ravi   | clerk     | 7782 | 2000-12-12 |  500.00 |    NULL |     50 |
+|  7369 | Smith  | clerk     | 7902 | 1993-06-13 |  800.00 |    0.00 |     20 |
+|  7499 | Allen  | Salesman  | 7698 | 1993-08-15 | 1600.00 |  300.00 |     30 |
+|  7521 | Ward   | Salesman  | 7698 | 1996-03-26 | 1250.00 |  500.00 |     30 |
+|  7566 | Jones  | manager   | 7839 | 1995-10-31 | 2975.00 |    NULL |     20 |
+|  7654 | Martin | Salesman  | 7698 | 1998-12-05 | 1250.00 | 1400.00 |     30 |
+|  7698 | Blake  | manager   | 7839 | 1992-06-11 | 2850.00 |    NULL |     30 |
+|  7782 | Clark  | manager   | 7839 | 1993-05-14 | 2450.00 |    NULL |     10 |
+|  7788 | Scott  | Analyst   | 7566 | 1996-03-05 | 3000.00 |    NULL |     20 |
+|  7839 | King   | President | NULL | 1990-06-09 | 5000.00 |    0.00 |     10 |
+|  7844 | Turner | Salesman  | 7698 | 1995-06-04 | 1500.00 |    0.00 |     10 |
+|  7876 | Adams  | Clerk     | 7788 | 1999-06-04 | 1100.00 |    NULL |     20 |
+|  7900 | James  | Clerk     | 7698 | 2000-06-23 |  950.00 |    NULL |     30 |
+|  7902 | Ford   | Analyst   | 7566 | 1997-12-05 | 3000.00 |    NULL |     20 |
+|  7934 | Miller | Cleark    | 7782 | 2000-01-21 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+17 rows in set (0.12 sec)
+
+mysql> select E.ename , D.dname
+    -> from emp E, dept as D;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| Jhon   | Accounting |
+| Jhon   | Research   |
+| Jhon   | Sales      |
+| Jhon   | Operations |
+| Jhon   | Production |
+| Jhon   | Marketing  |
+| Jhon   | Finance    |
+| sham   | Accounting |
+| sham   | Research   |
+| sham   | Sales      |
+| sham   | Operations |
+| sham   | Production |
+| sham   | Marketing  |
+| sham   | Finance    |
+| Ravi   | Accounting |
+| Ravi   | Research   |
+| Ravi   | Sales      |
+| Ravi   | Operations |
+| Ravi   | Production |
+| Ravi   | Marketing  |
+| Ravi   | Finance    |
+| Smith  | Accounting |
+| Smith  | Research   |
+| Smith  | Sales      |
+| Smith  | Operations |
+| Smith  | Production |
+| Smith  | Marketing  |
+| Smith  | Finance    |
+| Allen  | Accounting |
+| Allen  | Research   |
+| Allen  | Sales      |
+| Allen  | Operations |
+| Allen  | Production |
+| Allen  | Marketing  |
+| Allen  | Finance    |
+| Ward   | Accounting |
+| Ward   | Research   |
+| Ward   | Sales      |
+| Ward   | Operations |
+| Ward   | Production |
+| Ward   | Marketing  |
+| Ward   | Finance    |
+| Jones  | Accounting |
+| Jones  | Research   |
+| Jones  | Sales      |
+| Jones  | Operations |
+| Jones  | Production |
+| Jones  | Marketing  |
+| Jones  | Finance    |
+| Martin | Accounting |
+| Martin | Research   |
+| Martin | Sales      |
+| Martin | Operations |
+| Martin | Production |
+| Martin | Marketing  |
+| Martin | Finance    |
+| Blake  | Accounting |
+| Blake  | Research   |
+| Blake  | Sales      |
+| Blake  | Operations |
+| Blake  | Production |
+| Blake  | Marketing  |
+| Blake  | Finance    |
+| Clark  | Accounting |
+| Clark  | Research   |
+| Clark  | Sales      |
+| Clark  | Operations |
+| Clark  | Production |
+| Clark  | Marketing  |
+| Clark  | Finance    |
+| Scott  | Accounting |
+| Scott  | Research   |
+| Scott  | Sales      |
+| Scott  | Operations |
+| Scott  | Production |
+| Scott  | Marketing  |
+| Scott  | Finance    |
+| King   | Accounting |
+| King   | Research   |
+| King   | Sales      |
+| King   | Operations |
+| King   | Production |
+| King   | Marketing  |
+| King   | Finance    |
+| Turner | Accounting |
+| Turner | Research   |
+| Turner | Sales      |
+| Turner | Operations |
+| Turner | Production |
+| Turner | Marketing  |
+| Turner | Finance    |
+| Adams  | Accounting |
+| Adams  | Research   |
+| Adams  | Sales      |
+| Adams  | Operations |
+| Adams  | Production |
+| Adams  | Marketing  |
+| Adams  | Finance    |
+| James  | Accounting |
+| James  | Research   |
+| James  | Sales      |
+| James  | Operations |
+| James  | Production |
+| James  | Marketing  |
+| James  | Finance    |
+| Ford   | Accounting |
+| Ford   | Research   |
+| Ford   | Sales      |
+| Ford   | Operations |
+| Ford   | Production |
+| Ford   | Marketing  |
+| Ford   | Finance    |
+| Miller | Accounting |
+| Miller | Research   |
+| Miller | Sales      |
+| Miller | Operations |
+| Miller | Production |
+| Miller | Marketing  |
+| Miller | Finance    |
++--------+------------+
+119 rows in set (0.05 sec)
+
+mysql> select E.ename , D.dname
+    -> from emp E, dept as D
+    -> where E.deptno=D.deptno
+    -> order by E.salary;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| Ravi   | Production |
+| Smith  | Research   |
+| James  | Sales      |
+| Adams  | Research   |
+| Ward   | Sales      |
+| Martin | Sales      |
+| Miller | Accounting |
+| Turner | Accounting |
+| Allen  | Sales      |
+| Clark  | Accounting |
+| Jhon   | Production |
+| sham   | Production |
+| Blake  | Sales      |
+| Jones  | Research   |
+| Scott  | Research   |
+| Ford   | Research   |
+| King   | Accounting |
++--------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select E.ename ,E.salary, D.dname
+    -> from emp E, dept as D
+    -> where E.deptno=D.deptno
+    -> order by E.salary;
++--------+---------+------------+
+| ename  | salary  | dname      |
++--------+---------+------------+
+| Ravi   |  500.00 | Production |
+| Smith  |  800.00 | Research   |
+| James  |  950.00 | Sales      |
+| Adams  | 1100.00 | Research   |
+| Ward   | 1250.00 | Sales      |
+| Martin | 1250.00 | Sales      |
+| Miller | 1300.00 | Accounting |
+| Turner | 1500.00 | Accounting |
+| Allen  | 1600.00 | Sales      |
+| Clark  | 2450.00 | Accounting |
+| Jhon   | 2500.00 | Production |
+| sham   | 2500.00 | Production |
+| Blake  | 2850.00 | Sales      |
+| Jones  | 2975.00 | Research   |
+| Scott  | 3000.00 | Research   |
+| Ford   | 3000.00 | Research   |
+| King   | 5000.00 | Accounting |
++--------+---------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select E.ename ,E.salary, D.dname
+    -> from emp E, dept as D
+    -> where E.deptno=D.deptno and E.salary >2000;
++-------+---------+------------+
+| ename | salary  | dname      |
++-------+---------+------------+
+| Jhon  | 2500.00 | Production |
+| sham  | 2500.00 | Production |
+| Jones | 2975.00 | Research   |
+| Blake | 2850.00 | Sales      |
+| Clark | 2450.00 | Accounting |
+| Scott | 3000.00 | Research   |
+| King  | 5000.00 | Accounting |
+| Ford  | 3000.00 | Research   |
++-------+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select E.ename ,E.job, D.dname, D.location
+    -> from emp as E, dept as D
+    -> where E.deptno=D.deptno
+    -> and E.job='manager'
+    -> and D.location in ('newyork','chicago');
++-------+---------+------------+----------+
+| ename | job     | dname      | location |
++-------+---------+------------+----------+
+| Blake | manager | Sales      | Chicago  |
+| Clark | manager | Accounting | NewYork  |
++-------+---------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select E.ename , D.dname
+    -> from emp E join dept D
+    -> on E.deptno= D.deptno
+    -> and E.ename like '%s';
++-------+----------+
+| ename | dname    |
++-------+----------+
+| Jones | Research |
+| Adams | Research |
+| James | Sales    |
++-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select E.ename , D.dname
+    -> from emp E ,dept D
+    -> where E.deptno=D.deptno
+    -> And E.salary < (
+    -> select max(salary) from emp);
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| Jhon   | Production |
+| sham   | Production |
+| Ravi   | Production |
+| Smith  | Research   |
+| Allen  | Sales      |
+| Ward   | Sales      |
+| Jones  | Research   |
+| Martin | Sales      |
+| Blake  | Sales      |
+| Clark  | Accounting |
+| Scott  | Research   |
+| Turner | Accounting |
+| Adams  | Research   |
+| James  | Sales      |
+| Ford   | Research   |
+| Miller | Accounting |
++--------+------------+
+16 rows in set (0.00 sec)
+
+mysql> select E1.ename ,E1.salary
+    -> from emp E1, emp E2
+    -> where E1.salary=E2.salary
+    -> AND E1.empno <> E2.empno;
++--------+---------+
+| ename  | salary  |
++--------+---------+
+| sham   | 2500.00 |
+| Jhon   | 2500.00 |
+| Martin | 1250.00 |
+| Ward   | 1250.00 |
+| Ford   | 3000.00 |
+| Scott  | 3000.00 |
++--------+---------+
+6 rows in set (0.06 sec)
+
+mysql>
